@@ -21,6 +21,7 @@ function paintToDo(text){
     li.appendChild(delBtn);
     li.appendChild(span);
     toDoList.appendChild(li);
+    
     const toDoObj ={
         text: text,
         id: newId
@@ -38,11 +39,14 @@ function handleSubmit(event){
 
 function loadToDos(){
     console.log("hmm");
-    const loadedToDos = localStorage.getItem(TODOS_LS);
+    const loadedToDos = localStorage.getItem("TODOS_LS");
     if( loadedToDos !== null ){
         console.log(loadedToDos);
         const parsedToDos = JSON.parse(loadedToDos);
         console.log(parsedToDos);
+        parsedToDos.forEach(function(toDo){
+            paintToDo(toDo.text);
+        })
     }
 }
 
